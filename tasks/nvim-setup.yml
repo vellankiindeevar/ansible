@@ -1,8 +1,14 @@
 - name: Remove neovim
+  shell: rm /usr/local/bin/nvim && rm -r /usr/local/share/nvim/
+  become: yes
+  tags:
+    - neovim-update
+
+- name: Remove neovim folder
   shell: rm -rf ~/neovim
   tags:
-    - install
-    - neovim
+    - neovim-update
+
 - name: Clone Neovim
   ansible.builtin.git:
     repo: 'https://github.com/neovim/neovim.git'
@@ -10,29 +16,35 @@
   tags:
     - install
     - neovim
+    - neovim-update
+
 - name: Build neovim
   shell: "cd {{ lookup('env', 'HOME') }}/neovim && make -j 20"
   tags:
     - install
     - neovim
+    - neovim-update
+
 - name: Install neovim
   become: true
   shell: "cd {{ lookup('env', 'HOME') }}/neovim && make install"
   tags:
     - install
     - neovim
-- name: Neovim Plugin Development 1
-  become: true
-  apt: name=luarocks
-  tags:
-    - install
-    - neovim
-- name: Neovim Plugin Development 2 luacheck
-  become: true
-  shell: luarocks install luacheck
-  tags:
-    - install
-    - neovim
+    - neovim-update
+
+# - name: Neovim Plugin Development 1
+#   become: true
+#   apt: name=luarocks
+#   tags:
+#     - install
+#     - neovim
+# - name: Neovim Plugin Development 2 luacheck
+#   become: true
+#   shell: luarocks install luacheck
+#   tags:
+#     - install
+#     - neovim
 # - name: Install Vim-Plug
 #   shell: curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 #   tags:

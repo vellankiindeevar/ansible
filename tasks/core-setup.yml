@@ -1,0 +1,26 @@
+- name: Install nvim requirements 
+  become: true
+  apt:
+    update_cache: yes
+    pkg:
+    - build-essential
+    - ninja-build
+    - gettext
+    - libtool
+    - libtool-bin
+    - autoconf
+    - automake
+    - cmake
+    - g++
+    - pkg-config
+    - unzip
+    - curl
+    - doxygen 
+
+    - lua5.1
+
+  tags:
+    - install
+    - core
+    - neovim
+

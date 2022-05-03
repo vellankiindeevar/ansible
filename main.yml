@@ -11,8 +11,10 @@
       - install
       - core
   tasks:
-    - include_tasks: tasks/zsh-setup.yml
-    - include_tasks: tasks/cli-tools.yml
-    - include_tasks: tasks/nvim-setup.yml
-    # - include_tasks: tasks/fzf-setup.yml
-    # - include_tasks: tasks/dotfiles.yml
+    - import_tasks: tasks/core-setup.yml
+    - import_tasks: tasks/zsh-setup.yml
+    - import_tasks: tasks/nvim-setup.yml
+    - import_tasks: tasks/cli-tools.yml
+    - import_tasks: tasks/node-setup.yml
+    - import_tasks: tasks/dotfiles.yml
+    # - import_tasks: tasks/languages.yml

@@ -1,12 +1,15 @@
 - name: Update apt cache and make sure that things are installed
+  become: true
   apt:
-    name: "{{ item }}"
     update_cache: yes
-  loop:
+    pkg:
     - tmux
     - xclip
     - ripgrep
     - fd-find
     - stow
+    - fzf
   tags:
     - install
+    - cli
+    - tools

@@ -1,6 +1,5 @@
 zsh
 neovim 
-fzf  
 
 cli tools installed via apt 
     - tmux 
@@ -8,3 +7,4 @@ cli tools installed via apt
     - fd-find
     - ripgrep
     - stow   
+    - fzf  
