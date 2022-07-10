@@ -1,13 +1,20 @@
 - name: Install ZSH
   apt: name=zsh
   tags: &tags_for_zsh_tasks [ 'install', 'dotfiles', 'zsh' ]
-  vars:
-    - XDG_DATA_HOME: "{{ lookup('env', 'HOME') }}/.local/share"
+  become: yes
     
-- name: Change shell to zsh
-  shell: chsh -s $(which zsh)
-  become: true
+- name: Set default
+  user:
+    name: "{{ ansible_env['USER'] }}"
+    shell: /usr/bin/zsh
+  become: yes
   tags: *tags_for_zsh_tasks
+
+# - name: Change shell to zsh
+#   shell: chsh -s $(which zsh)
+#   tags: *tags_for_zsh_tasks
+#   become: yes
+#   changed_when: false
 
 # - name: Check that the somefile.conf exists
 #   stat:
@@ -21,19 +28,21 @@
 #   become_user: indeevar
 
 - name: Install syntax-hightlighting
+  vars:
+    - xdg_data_home: "{{ lookup('env', 'HOME') }}/.local/share"
   ansible.builtin.git:
     repo: 'https://github.com/zdharma/fast-syntax-highlighting'
-    dest: "{{ XDG_DATA_HOME }}"
+    dest: "{{ xdg_data_home }}/fast-syntax-highlighting"
     update: yes
-    version: master
   tags: *tags_for_zsh_tasks
 
 - name: Install simpler prompt
+  vars:
+    - xdg_data_home: "{{ lookup('env', 'HOME') }}/.local/share"
   ansible.builtin.git:
     repo: 'https://github.com/vellankiindeevar/simpler'
-    dest: "{{ XDG_DATA_HOME }}"
+    dest: "{{ xdg_data_home }}/simpler"
     update: yes
-    version: master
   tags: *tags_for_zsh_tasks
 
 # - name: Install zsh-autosuggestions

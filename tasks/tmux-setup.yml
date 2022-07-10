@@ -1,0 +1,44 @@
+- name: Remove tmux
+  shell: rm /usr/local/bin/tmux && rm -r /usr/local/share/man/man1/tmux.1
+  become: yes
+  tags:
+    - tmux-update
+
+- name: Remove tmux folder
+  shell: rm -rf ~/tmux
+  tags:
+    - tmux-update
+
+
+
+- name: clone tmux
+  ansible.builtin.git:
+    repo: 'https://github.com/tmux/tmux.git'
+    dest: "{{ lookup('env', 'HOME') }}/tmux"
+  tags:
+    - install
+    - tmux
+    - tmux-update
+
+
+- name: Build tmux
+  shell: "cd {{ lookup('env', 'HOME') }}/tmux && sh autogen.sh"
+  tags:
+    - install
+    - tmux
+    - tmux-update
+
+- name: run configure tmux 
+  shell: "cd {{ lookup('env', 'HOME') }}/tmux && ./configure"
+  tags:
+    - install
+    - tmux
+    - tmux-update
+
+- name: Install tmux
+  become: true
+  shell: "cd {{ lookup('env', 'HOME') }}/tmux && make && sudo make install"
+  tags:
+    - install
+    - tmux
+    - tmux-update

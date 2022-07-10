@@ -16,8 +16,15 @@
     - unzip
     - curl
     - doxygen 
-
     - lua5.1
+
+    # - libevent
+    - libevent-dev
+    - libncurses5-dev
+    # - ncurses
+    - ncurses-dev
+    - bison 
+    - pkg-config
 
   tags:
     - install
