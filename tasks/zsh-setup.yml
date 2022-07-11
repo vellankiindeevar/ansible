@@ -22,28 +22,28 @@
 #   register: oh_my_stats
 #   tags: *tags_for_zsh_tasks
 
-# - name: Oh-My-Zsh
-#   shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh > ~/.oh-my-installer && chmod +x ~/.oh-my-installer && ~/.oh-my-installer
+- name: Oh-My-Zsh
+  shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh > ~/.oh-my-installer && chmod +x ~/.oh-my-installer && ~/.oh-my-installer
+  tags: *tags_for_zsh_tasks
+  become_user: indeevar
+
+# - name: Install syntax-hightlighting
+#   vars:
+#     - xdg_data_home: "{{ lookup('env', 'HOME') }}/.local/share"
+#   ansible.builtin.git:
+#     repo: 'https://github.com/zdharma/fast-syntax-highlighting'
+#     dest: "{{ xdg_data_home }}/fast-syntax-highlighting"
+#     update: yes
 #   tags: *tags_for_zsh_tasks
-#   become_user: indeevar
 
-- name: Install syntax-hightlighting
-  vars:
-    - xdg_data_home: "{{ lookup('env', 'HOME') }}/.local/share"
-  ansible.builtin.git:
-    repo: 'https://github.com/zdharma/fast-syntax-highlighting'
-    dest: "{{ xdg_data_home }}/fast-syntax-highlighting"
-    update: yes
-  tags: *tags_for_zsh_tasks
-
-- name: Install simpler prompt
-  vars:
-    - xdg_data_home: "{{ lookup('env', 'HOME') }}/.local/share"
-  ansible.builtin.git:
-    repo: 'https://github.com/vellankiindeevar/simpler'
-    dest: "{{ xdg_data_home }}/simpler"
-    update: yes
-  tags: *tags_for_zsh_tasks
+# - name: Install simpler prompt
+#   vars:
+#     - xdg_data_home: "{{ lookup('env', 'HOME') }}/.local/share"
+#   ansible.builtin.git:
+#     repo: 'https://github.com/vellankiindeevar/simpler'
+#     dest: "{{ xdg_data_home }}/simpler"
+#     update: yes
+#   tags: *tags_for_zsh_tasks
 
 # - name: Install zsh-autosuggestions
 #   ansible.builtin.git:
