@@ -1,0 +1,16 @@
+- name: Creates alacritty directory
+  file:
+    path: /mnt/c/Users/Admin/Downloads/fonts
+    state: directory
+  tags:
+    - fonts
+    - install
+
+- name: Download JetbrainsMono
+  ansible.builtin.unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip
+    dest: "/mnt/c/Users/Admin/Downloads/fonts/"
+    remote_src: yes
+  tags:
+    - fonts
+    - install

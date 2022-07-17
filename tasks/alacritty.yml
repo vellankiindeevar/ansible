@@ -1,0 +1,20 @@
+- name: Creates alacritty directory
+  file:
+    path: /mnt/c/Users/Admin/AppData/Roaming/alacritty
+    state: directory
+  tags:
+    - term
+
+- name: touch alacritty.yml
+  ansible.builtin.file:
+    path: /mnt/c/Users/Admin/AppData/Roaming/alacritty/alacritty.yml
+    state: touch
+  tags:
+    - term
+
+- name: cp alacritty
+  ansible.builtin.copy:
+    src: ~/.dotfiles/alacritty/alacritty.yml
+    dest: /mnt/c/Users/Admin/AppData/Roaming/alacritty/alacritty.yml
+  tags:
+    - term

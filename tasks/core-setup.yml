@@ -3,6 +3,8 @@
   apt:
     update_cache: yes
     pkg:
+    - python3-pip
+
     - build-essential
     - ninja-build
     - gettext
@@ -45,8 +47,6 @@
     - libxcb-keysyms1
     - libxcb-xtest0
     - ibus
-
-
   tags:
     - install
     - core

@@ -13,7 +13,10 @@
   tasks:
     - import_tasks: tasks/core-setup.yml
     - import_tasks: tasks/zsh-setup.yml
-      #    - import_tasks: tasks/nvim-setup.yml
+    - import_tasks: tasks/nvim-setup.yml
     - import_tasks: tasks/tmux-setup.yml
     - import_tasks: tasks/cli-tools.yml
     - import_tasks: tasks/node-setup.yml
+    - import_tasks: tasks/pip-setup.yml
+    - import_tasks: tasks/alacritty.yml
+    - import_tasks: tasks/fonts.yml

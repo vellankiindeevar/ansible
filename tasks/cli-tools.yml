@@ -9,6 +9,7 @@
       - fd-find
       - stow
       - fzf
+      - hugo 
     state: latest
   become: yes
   tags:

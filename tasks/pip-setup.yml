@@ -1,0 +1,11 @@
+---
+- name: pimpitup with pip tools
+  ansible.builtin.pip:
+    name:
+      - pudb
+      - ipython
+
+    state: latest
+  tags:
+    - install
+    - pip
