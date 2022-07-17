@@ -2,6 +2,9 @@
   file:
     path: "{{ lookup('env', 'HOME') }}/.fonts"
     state: directory
+  tags:
+    - fonts
+    - install
 
 - name: Download Hack
   when: hack_exists is failed
@@ -9,3 +12,6 @@
     src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip
     dest: "{{ lookup('env', 'HOME') }}/.fonts/"
     remote_src: yes
+  tags:
+    - fonts
+    - install
