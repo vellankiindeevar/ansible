@@ -3,13 +3,11 @@
   apt:
     update_cache: yes
     pkg:
-    - python3-pip
-
-    - build-essential
     - ninja-build
     - gettext
     - libtool
     - libtool-bin
+    - libpthread-stubs0-dev
     - autoconf
     - automake
     - cmake
@@ -18,37 +16,27 @@
     - unzip
     - curl
     - doxygen 
-    - lua5.1
-
-    # - libevent
-    - libevent-dev
-    - libncurses5-dev
-    # - ncurses
-    - ncurses-dev
-    - bison 
-    - pkg-config
-
-    - libglib2.0-0
-      #    - libgstreamer-plugins-base0.10-0 
-    - libxcb-shape0
-    - libxcb-shm0
-    - libxcb-xfixes0
-    - libxcb-randr0
-    - libxcb-image0
-    - libfontconfig1
-    - libgl1-mesa-glx
-    - libxi6
-    - libsm6
-    - libxrender1
-    - libpulse0
-    - libxcomposite1
-    - libxslt1.1
-    - libsqlite3-0
-    - libxcb-keysyms1
-    - libxcb-xtest0
-    - ibus
   tags:
     - install
     - core
     - neovim
 
+- name: Install System Packages 3 (the rest)
+  become: true
+  apt:
+    name: [ "picom","htop", "i3", "python3-pip", "dconf-editor", "nvidia-settings", "moreutils"]
+  tags:
+    - install
+    - core
+
+- name: dconf i3
+  shell: dconf write /org/mate/desktop/session/required-components/windowmanager "'i3'"
+  tags:
+    - install
+    - core
+
+- name: dconf i3
+  shell: dconf write /org/mate/desktop/background/show-desktop-icons "false"
+  tags:
+    - install
+    - core
